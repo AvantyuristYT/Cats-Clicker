@@ -114,7 +114,7 @@ public class UpgradesManager : MonoBehaviour
         moneyUpgradeSevenCost = 20000000;
         moneyUpgradeEightCost = 270000000;
         moneyUpgradeNineCost = 3000000000;
-        moneyUpgradeTenCost = 50000000000;
+        moneyUpgradeTenCost = 10000000000;
 
         happyUpgradeOneCost = 10;
         happyUpgradeTwoCost = 100;
@@ -125,7 +125,7 @@ public class UpgradesManager : MonoBehaviour
         happyUpgradeSevenCost = 500000;
         happyUpgradeEightCost = 12000000;
         happyUpgradeNineCost = 300000000;
-        happyUpgradeTenCost = 1500000000;
+        happyUpgradeTenCost = 1200000000;
     }
     /// <summary>
     /// Инициализация множителей цены улучшения
@@ -306,6 +306,7 @@ public class UpgradesManager : MonoBehaviour
             UpdateMoneyPerSecUI();
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+            UpdateMoneyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -323,6 +324,7 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+            UpdateMoneyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -357,6 +359,7 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+            UpdateMoneyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -374,6 +377,7 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+            UpdateMoneyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -408,6 +412,7 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+            UpdateMoneyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -442,6 +447,7 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+            UpdateMoneyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -495,6 +501,7 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+            UpdateHappyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -512,6 +519,7 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+            UpdateHappyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -525,7 +533,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeFiveCost());
 
             data.happyUpgradeFiveLevel += 1;
-            data.clickHappyPerClick += 10;
+            data.clickHappyPerClick += 20;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -542,10 +550,11 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeSixCost());
 
             data.happyUpgradeSixLevel += 1;
-            data.clickHappyPerSecond += 10;
+            data.clickHappyPerSecond += 200;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+            UpdateHappyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -559,7 +568,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeSevenCost());
 
             data.happyUpgradeSevenLevel += 1;
-            data.clickHappyPerClick += 500;
+            data.clickHappyPerClick += 1000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -576,10 +585,11 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeEightCost());
 
             data.happyUpgradeEightLevel += 1;
-            data.clickHappyPerSecond += 300;
+            data.clickHappyPerSecond += 5000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+            UpdateHappyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }
@@ -593,7 +603,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeNineCost());
 
             data.happyUpgradeNineLevel += 1;
-            data.clickHappyPerClick += 3000;
+            data.clickHappyPerClick += 10000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -610,10 +620,11 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeTenCost());
 
             data.happyUpgradeTenLevel += 1;
-            data.clickHappyPerSecond += 5000;
+            data.clickHappyPerSecond += 30000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+            UpdateHappyPerSecUI();
 
             AudioManager.instance.PlaySoundBuyUpgrade();
         }

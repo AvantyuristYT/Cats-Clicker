@@ -20,6 +20,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private Slider _happyCountBar; // Прогресс Бар ОчС
 
     [SerializeField] private TMP_Text _moneyScreenText;
+    [SerializeField] private TMP_Text _happyCountBarText;
 
     // Устанавливаем силу нажатия
     private double ClickPowerHappy() => 1 + data.clickHappyPerClick;
@@ -111,8 +112,9 @@ public class Controller : MonoBehaviour
     /// </summary>
     public void UpdateHappyCountUI()
     {
-        _happyCountText.text = Math.Round(data.GetHappyCount(), 1).ToString() + " ОЧКОВ СЧАСТЬЯ";
+        _happyCountText.text = Math.Round(data.GetHappyCount()).ToString("N3") + " ОЧКОВ СЧАСТЬЯ";
         _happyCountBar.value = (float)data.GetHappyCount();
+        _happyCountBarText.text = data.GetHappyCount().ToString("N0") + " / 1.000.000.000.000";
     }
     /// <summary>
     /// Обновить UI с Деньгами
