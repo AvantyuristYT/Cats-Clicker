@@ -288,6 +288,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyMoneyUpgradeTwo()
@@ -304,6 +306,8 @@ public class UpgradesManager : MonoBehaviour
             UpdateMoneyPerSecUI();
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyMoneyUpgradeThree()
@@ -319,6 +323,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyMoneyUpgradeFour()
@@ -334,6 +340,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyMoneyUpgradeFive()
@@ -349,6 +357,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyMoneyUpgradeSix()
@@ -364,6 +374,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyMoneyUpgradeSeven()
@@ -379,6 +391,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyMoneyUpgradeEight()
@@ -394,6 +408,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyMoneyUpgradeNine()
@@ -409,6 +425,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyMoneyUpgradeTen()
@@ -424,6 +442,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     // Покупаем улучшения Денег
@@ -440,6 +460,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyHappyUpgradeTwo()
@@ -456,6 +478,8 @@ public class UpgradesManager : MonoBehaviour
             _happyPerSecText.text = $"{Controller.instance.data.clickHappyPerSecond:F2}/с";
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyHappyUpgradeThree()
@@ -471,6 +495,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyHappyUpgradeFour()
@@ -486,6 +512,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyHappyUpgradeFive()
@@ -501,6 +529,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyHappyUpgradeSix()
@@ -516,6 +546,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyHappyUpgradeSeven()
@@ -531,6 +563,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyHappyUpgradeEight()
@@ -546,6 +580,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyHappyUpgradeNine()
@@ -561,6 +597,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
     public void BuyHappyUpgradeTen()
@@ -576,6 +614,8 @@ public class UpgradesManager : MonoBehaviour
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
+
+            AudioManager.instance.PlaySoundBuyUpgrade();
         }
     }
 }

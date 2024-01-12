@@ -42,10 +42,12 @@ public class ChangePanelsController : MonoBehaviour
     public void OpenCatsScreen()
     {
         SetActivePanel(_catsScreen);
+        AudioManager.instance.PlaySoundClickUIButton();
     }
 
     public void OpenWorldScreen()
     {
         SetActivePanel(_worldScreen);
+        AudioManager.instance.PlaySoundClickUIButton();
     }
 }

@@ -131,6 +131,8 @@ public class Controller : MonoBehaviour
 
         Instantiate(popupHappyTextPrefab, Input.mousePosition, Quaternion.identity);
         Instantiate(popupHappyIconPrefab, Input.mousePosition, Quaternion.identity);
+
+        AudioManager.instance.PlaySoundClickMainButton();
     }
     // Нажатие  на кнопку Денег
     public void PressMoneyButton()
@@ -139,6 +141,8 @@ public class Controller : MonoBehaviour
         UpdateMoneyCountUI();
         Instantiate(popupMoneyTextPrefab, Input.mousePosition, Quaternion.identity);
         Instantiate(popupMoneyIconPrefab, Input.mousePosition, Quaternion.identity);
+
+        AudioManager.instance.PlaySoundClickMainButton();
     }
     // Получить значение ОчС за клик
     public double GetPowerHappyPerClick()
