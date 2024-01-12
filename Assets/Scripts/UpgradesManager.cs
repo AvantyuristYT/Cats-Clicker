@@ -8,6 +8,9 @@ public class UpgradesManager : MonoBehaviour
 {
     public static UpgradesManager instance;
     private void Awake() => instance = this;
+    // Получаем текста с прыбылью в секунду
+    [SerializeField] private TMP_Text _happyPerSecText;
+    [SerializeField] private TMP_Text _moneyPerSecText;
 
     // Получаем хар-ти улучшений Денег с объектов 
     [Header("Ссылки на улучшения Денег")]
@@ -88,32 +91,41 @@ public class UpgradesManager : MonoBehaviour
         UpdateMoneyUpgradeUI();
         UpdateHappyUpgradeUI();
     }
+
+    private void Update()
+    {
+        Controller.instance.data.AddHappyCount(Controller.instance.data.clickHappyPerSecond * Time.deltaTime);
+        Controller.instance.UpdateHappyCountUI();
+        
+        Controller.instance.data.AddMoneyCount(Controller.instance.data.clickMoneyPerSecond * Time.deltaTime);
+        Controller.instance.UpdateMoneyCountUI();
+    }
     /// <summary>
     /// Инициализация цены улучшения
     /// </summary>
     private void InitUpgradeCost()
     {
-        moneyUpgradeOneCost = 10;
-        moneyUpgradeTwoCost = 20;
-        moneyUpgradeThreeCost = 30;
-        moneyUpgradeFourCost = 40;
-        moneyUpgradeFiveCost = 50;
-        moneyUpgradeSixCost = 60;
-        moneyUpgradeSevenCost = 70;
-        moneyUpgradeEightCost = 80;
-        moneyUpgradeNineCost = 90;
-        moneyUpgradeTenCost = 100;
+        moneyUpgradeOneCost = 20; 
+        moneyUpgradeTwoCost = 200;
+        moneyUpgradeThreeCost = 1000;
+        moneyUpgradeFourCost = 12000;
+        moneyUpgradeFiveCost = 99999;
+        moneyUpgradeSixCost = 1000000;
+        moneyUpgradeSevenCost = 20000000;
+        moneyUpgradeEightCost = 270000000;
+        moneyUpgradeNineCost = 3000000000;
+        moneyUpgradeTenCost = 50000000000;
 
         happyUpgradeOneCost = 10;
-        happyUpgradeTwoCost = 20;
-        happyUpgradeThreeCost = 30;
-        happyUpgradeFourCost = 40;
-        happyUpgradeFiveCost = 50;
-        happyUpgradeSixCost = 60;
-        happyUpgradeSevenCost = 70;
-        happyUpgradeEightCost = 80;
-        happyUpgradeNineCost = 90;
-        happyUpgradeTenCost = 100;
+        happyUpgradeTwoCost = 100;
+        happyUpgradeThreeCost = 700;
+        happyUpgradeFourCost = 4000;
+        happyUpgradeFiveCost = 18000;
+        happyUpgradeSixCost = 60000;
+        happyUpgradeSevenCost = 500000;
+        happyUpgradeEightCost = 12000000;
+        happyUpgradeNineCost = 300000000;
+        happyUpgradeTenCost = 1500000000;
     }
     /// <summary>
     /// Инициализация множителей цены улучшения
@@ -122,25 +134,25 @@ public class UpgradesManager : MonoBehaviour
     {
         moneyUpgradeOneCostMultiplier = 1.08;
         moneyUpgradeTwoCostMultiplier = 1.09;
-        moneyUpgradeThreeCostMultiplier = 1.11;
+        moneyUpgradeThreeCostMultiplier = 1.12;
         moneyUpgradeFourCostMultiplier = 1.13;
-        moneyUpgradeFiveCostMultiplier = 1.13;
+        moneyUpgradeFiveCostMultiplier = 1.16;
         moneyUpgradeSixCostMultiplier = 1.11;
-        moneyUpgradeSevenCostMultiplier = 1.13;
-        moneyUpgradeEightCostMultiplier = 1.12;
-        moneyUpgradeNineCostMultiplier = 1.11;
-        moneyUpgradeTenCostMultiplier = 1.18;
+        moneyUpgradeSevenCostMultiplier = 1.10;
+        moneyUpgradeEightCostMultiplier = 1.08;
+        moneyUpgradeNineCostMultiplier = 1.09;
+        moneyUpgradeTenCostMultiplier = 1.07;
 
         happyUpgradeOneCostMultiplier = 1.10;
         happyUpgradeTwoCostMultiplier = 1.11;
-        happyUpgradeThreeCostMultiplier = 1.13;
-        happyUpgradeFourCostMultiplier = 1.15;
+        happyUpgradeThreeCostMultiplier = 1.12;
+        happyUpgradeFourCostMultiplier = 1.10;
         happyUpgradeFiveCostMultiplier = 1.15;
-        happyUpgradeSixCostMultiplier = 1.13;
+        happyUpgradeSixCostMultiplier = 1.12;
         happyUpgradeSevenCostMultiplier = 1.15;
-        happyUpgradeEightCostMultiplier = 1.14;
-        happyUpgradeNineCostMultiplier = 1.13;
-        happyUpgradeTenCostMultiplier = 1.2;
+        happyUpgradeEightCostMultiplier = 1.13;
+        happyUpgradeNineCostMultiplier = 1.12;
+        happyUpgradeTenCostMultiplier = 1.08;
     }
 
     /// <summary>
@@ -150,53 +162,93 @@ public class UpgradesManager : MonoBehaviour
     {
         var _data = Controller.instance.data;
         moneyUpgradeOne.levelText.text = _data.moneyUpgradeOneLevel.ToString();
-        moneyUpgradeOne.costText.text = MoneyUpgradeOneCost().ToString("F2");
+        moneyUpgradeOne.costText.text = ReturnNotationNumber(MoneyUpgradeOneCost());
         moneyUpgradeTwo.levelText.text = _data.moneyUpgradeTwoLevel.ToString();
-        moneyUpgradeTwo.costText.text = MoneyUpgradeTwoCost().ToString("F2");
+        moneyUpgradeTwo.costText.text = ReturnNotationNumber(MoneyUpgradeTwoCost());
         moneyUpgradeThree.levelText.text = _data.moneyUpgradeThreeLevel.ToString();
-        moneyUpgradeThree.costText.text = MoneyUpgradeThreeCost().ToString("F2");
+        moneyUpgradeThree.costText.text = ReturnNotationNumber(MoneyUpgradeThreeCost());
         moneyUpgradeFour.levelText.text = _data.moneyUpgradeFourLevel.ToString();
-        moneyUpgradeFour.costText.text = MoneyUpgradeFourCost().ToString("F2");
+        moneyUpgradeFour.costText.text = ReturnNotationNumber(MoneyUpgradeFourCost());
         moneyUpgradeFive.levelText.text = _data.moneyUpgradeFiveLevel.ToString();
-        moneyUpgradeFive.costText.text = MoneyUpgradeFiveCost().ToString("F2");
+        moneyUpgradeFive.costText.text = ReturnNotationNumber(MoneyUpgradeFiveCost());
         moneyUpgradeSix.levelText.text = _data.moneyUpgradeSixLevel.ToString();
-        moneyUpgradeSix.costText.text = MoneyUpgradeSixCost().ToString("F2");
+        moneyUpgradeSix.costText.text = ReturnNotationNumber(MoneyUpgradeSixCost());
         moneyUpgradeSeven.levelText.text = _data.moneyUpgradeSevenLevel.ToString();
-        moneyUpgradeSeven.costText.text = MoneyUpgradeSevenCost().ToString("F2");
+        moneyUpgradeSeven.costText.text = ReturnNotationNumber(MoneyUpgradeSevenCost());
         moneyUpgradeEight.levelText.text = _data.moneyUpgradeEightLevel.ToString();
-        moneyUpgradeEight.costText.text = MoneyUpgradeEightCost().ToString("F2");
+        moneyUpgradeEight.costText.text = ReturnNotationNumber(MoneyUpgradeEightCost());
         moneyUpgradeNine.levelText.text = _data.moneyUpgradeNineLevel.ToString();
-        moneyUpgradeNine.costText.text = MoneyUpgradeNineCost().ToString("F2");
+        moneyUpgradeNine.costText.text = ReturnNotationNumber(MoneyUpgradeNineCost());
         moneyUpgradeTen.levelText.text = _data.moneyUpgradeTenLevel.ToString();
-        moneyUpgradeTen.costText.text = MoneyUpgradeTenCost().ToString("F2");
+        moneyUpgradeTen.costText.text = ReturnNotationNumber(MoneyUpgradeTenCost());
+    }
+
+    public string ReturnNotationNumber(double value)
+    {
+        string temp = "";
+        if (value > 999999 && value < 1000000000)
+        {
+            temp = (value / 1000000).ToString("N3");
+            return temp + " М";
+        }
+        if (value > 999999999 && value < 1000000000000)
+        {
+            temp = (value / 1000000000).ToString("N3");
+            return temp + " B";
+        }
+        if (value > 999999999999 && value < 1000000000000000)
+        {
+            temp = (value / 1000000000000).ToString("N3");
+            return temp + " T";
+        }
+        if (value > 999999999999999 && value < 1000000000000000000)
+        {
+            temp = (value / 1000000000000).ToString("N3");
+            return temp + " Q";
+        }
+        return value.ToString("N0");
     }
 
     /// <summary>
-    /// Обновить UI улучшений Денег
+    /// Обновить UI улучшений ОчС
     /// </summary>
     public void UpdateHappyUpgradeUI()
     {
         var _data = Controller.instance.data;
         happyUpgradeOne.levelText.text = _data.happyUpgradeOneLevel.ToString();
-        happyUpgradeOne.costText.text = HappyUpgradeOneCost().ToString("F2");
+        happyUpgradeOne.costText.text = ReturnNotationNumber(HappyUpgradeOneCost());
         happyUpgradeTwo.levelText.text = _data.happyUpgradeTwoLevel.ToString();
-        happyUpgradeTwo.costText.text = HappyUpgradeTwoCost().ToString("F2");
+        happyUpgradeTwo.costText.text = ReturnNotationNumber(HappyUpgradeTwoCost());
         happyUpgradeThree.levelText.text = _data.happyUpgradeThreeLevel.ToString();
-        happyUpgradeThree.costText.text = HappyUpgradeThreeCost().ToString("F2");
+        happyUpgradeThree.costText.text = ReturnNotationNumber(HappyUpgradeThreeCost());
         happyUpgradeFour.levelText.text = _data.happyUpgradeFourLevel.ToString();
-        happyUpgradeFour.costText.text = HappyUpgradeFourCost().ToString("F2");
+        happyUpgradeFour.costText.text = ReturnNotationNumber(HappyUpgradeFourCost());
         happyUpgradeFive.levelText.text = _data.happyUpgradeFiveLevel.ToString();
-        happyUpgradeFive.costText.text = HappyUpgradeFiveCost().ToString("F2");
+        happyUpgradeFive.costText.text = ReturnNotationNumber(HappyUpgradeFiveCost());
         happyUpgradeSix.levelText.text = _data.happyUpgradeSixLevel.ToString();
-        happyUpgradeSix.costText.text = HappyUpgradeSixCost().ToString("F2");
+        happyUpgradeSix.costText.text = ReturnNotationNumber(HappyUpgradeSixCost());
         happyUpgradeSeven.levelText.text = _data.happyUpgradeSevenLevel.ToString();
-        happyUpgradeSeven.costText.text = HappyUpgradeSevenCost().ToString("F2");
+        happyUpgradeSeven.costText.text = ReturnNotationNumber(HappyUpgradeSevenCost());
         happyUpgradeEight.levelText.text = _data.happyUpgradeEightLevel.ToString();
-        happyUpgradeEight.costText.text = HappyUpgradeEightCost().ToString("F2");
+        happyUpgradeEight.costText.text = ReturnNotationNumber(HappyUpgradeEightCost());
         happyUpgradeNine.levelText.text = _data.happyUpgradeNineLevel.ToString();
-        happyUpgradeNine.costText.text = HappyUpgradeNineCost().ToString("F2");
+        happyUpgradeNine.costText.text = ReturnNotationNumber(HappyUpgradeNineCost());
         happyUpgradeTen.levelText.text = _data.happyUpgradeTenLevel.ToString();
-        happyUpgradeTen.costText.text = HappyUpgradeTenCost().ToString("F2");
+        happyUpgradeTen.costText.text = ReturnNotationNumber(HappyUpgradeTenCost());
+    }
+    /// <summary>
+    /// Обновить UI ОчС в секунду
+    /// </summary>
+    public void UpdateHappyPerSecUI()
+    {
+        _happyPerSecText.text = $"{Controller.instance.data.clickHappyPerSecond:N3}/с";
+    }
+    /// <summary>
+    /// Обновить UI Денег в секунду
+    /// </summary>
+    public void UpdateMoneyPerSecUI()
+    {
+        _moneyPerSecText.text = $"{Controller.instance.data.clickMoneyPerSecond:N3}/с";
     }
 
     // Формируем новую цену для улучшения Денег
@@ -232,7 +284,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeOneCost());
 
             data.moneyUpgradeOneLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerClick += 0.1;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
@@ -247,8 +299,9 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeTwoCost());
 
             data.moneyUpgradeTwoLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerSecond += 1;
 
+            UpdateMoneyPerSecUI();
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
         }
@@ -262,7 +315,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeThreeCost());
 
             data.moneyUpgradeThreeLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerSecond += 5;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
@@ -277,7 +330,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeFourCost());
 
             data.moneyUpgradeFourLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerClick += 10;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
@@ -292,7 +345,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeFiveCost());
 
             data.moneyUpgradeFiveLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerSecond += 100;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
@@ -307,7 +360,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeSixCost());
 
             data.moneyUpgradeSixLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerSecond += 5000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
@@ -322,7 +375,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeSevenCost());
 
             data.moneyUpgradeSevenLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerClick += 5000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
@@ -337,7 +390,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeEightCost());
 
             data.moneyUpgradeEightLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerSecond += 30000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
@@ -352,7 +405,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeNineCost());
 
             data.moneyUpgradeNineLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerClick += 15000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
@@ -367,7 +420,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(MoneyUpgradeTenCost());
 
             data.moneyUpgradeTenLevel += 1;
-            data.clickMoneyPerClick += 0.5;
+            data.clickMoneyPerSecond += 400000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateMoneyUpgradeUI();
@@ -383,7 +436,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeOneCost());
 
             data.happyUpgradeOneLevel += 1;
-            data.clickHappyPerClick += 0.5;
+            data.clickHappyPerClick += 0.2;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -400,6 +453,7 @@ public class UpgradesManager : MonoBehaviour
             data.happyUpgradeTwoLevel += 1;
             data.clickHappyPerClick += 0.5;
 
+            _happyPerSecText.text = $"{Controller.instance.data.clickHappyPerSecond:F2}/с";
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
         }
@@ -413,7 +467,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeThreeCost());
 
             data.happyUpgradeThreeLevel += 1;
-            data.clickHappyPerClick += 0.5;
+            data.clickHappyPerSecond += 0.5;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -428,7 +482,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeFourCost());
 
             data.happyUpgradeFourLevel += 1;
-            data.clickHappyPerClick += 0.5;
+            data.clickHappyPerSecond += 2;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -443,7 +497,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeFiveCost());
 
             data.happyUpgradeFiveLevel += 1;
-            data.clickHappyPerClick += 0.5;
+            data.clickHappyPerClick += 10;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -458,7 +512,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeSixCost());
 
             data.happyUpgradeSixLevel += 1;
-            data.clickHappyPerClick += 0.5;
+            data.clickHappyPerSecond += 10;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -473,7 +527,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeSevenCost());
 
             data.happyUpgradeSevenLevel += 1;
-            data.clickHappyPerClick += 0.5;
+            data.clickHappyPerClick += 500;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -488,7 +542,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeEightCost());
 
             data.happyUpgradeEightLevel += 1;
-            data.clickHappyPerClick += 0.5;
+            data.clickHappyPerSecond += 300;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -503,7 +557,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeNineCost());
 
             data.happyUpgradeNineLevel += 1;
-            data.clickHappyPerClick += 0.5;
+            data.clickHappyPerClick += 3000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();
@@ -518,7 +572,7 @@ public class UpgradesManager : MonoBehaviour
             data.SubstractMoneyCount(HappyUpgradeTenCost());
 
             data.happyUpgradeTenLevel += 1;
-            data.clickHappyPerClick += 0.5;
+            data.clickHappyPerSecond += 5000;
 
             Controller.instance.UpdateMoneyCountUI();
             UpdateHappyUpgradeUI();

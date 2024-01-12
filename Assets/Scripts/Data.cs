@@ -41,6 +41,8 @@ public class Data
     {
         _happyCount = 0;
         _moneyCount = 0;
+        clickHappyPerSecond = 0;
+        clickMoneyPerSecond = 0;
 
         moneyUpgradeOneLevel = 0;
         moneyUpgradeTwoLevel = 0;

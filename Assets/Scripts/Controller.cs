@@ -58,6 +58,7 @@ public class Controller : MonoBehaviour
     {
         data = new Data();
         UpgradesManager.instance.StartUpgradeManager(); // Обновляем UI улучшений при старте игры
+        UpdateMoneyCountUI();
     }
 
     private void Update()
@@ -118,8 +119,8 @@ public class Controller : MonoBehaviour
     /// </summary>
     public void UpdateMoneyCountUI()
     {
-        _moneyCountText.text = "ДЕНЬГИ: \n" + Math.Round(data.GetMoneyCount(), 2).ToString();
-        _moneyScreenText.text = Math.Round(data.GetMoneyCount(), 2).ToString();
+        _moneyCountText.text = "ДЕНЬГИ: \n" + UpgradesManager.instance.ReturnNotationNumber(instance.data.GetMoneyCount());
+        _moneyScreenText.text = Math.Round(data.GetMoneyCount(), 2).ToString();        
     }
 
     // Нажатие на кнопку ОчС
